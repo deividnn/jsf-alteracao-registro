@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Produtos</title>
+    </h:head>
+    <h:body>
+
+        <br />
+        <h:form id="form">
+
+            <p:inputText size="5" rendered="#{produtoBean.p.id ne 0}"
+                         value="#{produtoBean.p.id}"/>
+
+            <p:inputText required="true"
+                         value="#{produtoBean.p.descricao}"/>
+
+            <p:commandButton update="@form"
+                             actionListener="#{produtoBean.salvar()}"
+                             value="salvar"/>
+
+            <p:commandButton update="@form"
+                             actionListener="#{produtoBean.novo()}"
+                             value="novo"/>
+
+            <p:dataTable value="#{produtoBean.ps}"
+                         var="l"
+                         paginator="true"
+                         rows="5">
+                <p:column>
+                    <h:outputText value="#{l.id}"/>
+                </p:column>
+                <p:column>
+                    <h:outputText value="#{l.descricao}"/>
+                </p:column>
+                <p:column>
+                    <p:commandLink update="@form"
+                                   immediate="true"
+                                   value="editar"
+                                   actionListener="#{produtoBean.setar(l)}"/>
+                </p:column>
+                <p:column headerText="alteracoes">
+
+                    <p:commandLink update="@form"
+                                   immediate="true"
+                                   value="log"
+                                   actionListener="#{produtoBean.listarlog(l)}"/>
+
+                </p:column>
+
+            </p:dataTable>
+
+            <p:dataTable value="#{produtoBean.ls}"
+                         var="ll"
+                         scrollable="true"
+                         scrollWidth="600"
+                         frozenColumns="3"
+                         emptyMessage=""
+                         rendered="#{produtoBean.ls.size() gt 0}">
+                <p:column>
+                    <h:outputText value="#{ll.id}"/>
+                </p:column>
+                <p:column>
+                    <h:outputText value="#{ll.tabela}"/>
+                </p:column>
+                <p:column>
+                    <h:outputText value="#{ll.id_tabela}"/>
+                </p:column>                
+                <p:column>
+                    <h:outputText value="#{ll.dados}"/>
+                </p:column>
+            </p:dataTable>
+
+
+        </h:form>
+    </h:body>
+</html>
+

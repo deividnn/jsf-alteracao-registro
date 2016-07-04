@@ -1,0 +1,18 @@
+CREATE TABLE `log` (
+	`id` INT(11) NOT NULL AUTO_INCREMENT,
+	`id_tabela` INT(11) NOT NULL DEFAULT '0',
+	`tabela` VARCHAR(50) NOT NULL DEFAULT '0',
+	`dados` LONGTEXT NOT NULL,
+	INDEX `Index 1` (`id`)
+)
+ENGINE=InnoDB
+;
+
+CREATE TABLE `produto` (
+	`id` INT(11) NOT NULL AUTO_INCREMENT,
+	`descricao` VARCHAR(100) NOT NULL DEFAULT '0',
+	UNIQUE INDEX `Index 2` (`descricao`),
+	INDEX `Index 1` (`id`)
+)
+ENGINE=InnoDB
+;
